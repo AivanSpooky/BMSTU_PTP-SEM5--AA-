@@ -1,0 +1,108 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут приведены требования к программному обеспечению, средства реализации, листинги кода.
+
+\section{Требования к программному обеспечению}
+
+Входные данные: две строки на русском или английском языке в любом регистре;
+
+Выходные данные: искомое расстояние для выбранного метода и матрицы расстояний для матричных реализаций.
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $Python$ [3]. Выбор обсуловлен наличием функции вычисления процессорного времени в библиотеке \textit{time} [4]. Время было замерено с помощью функции \textit{process\_time()}.
+
+\section{Реализация алгоритмов}
+
+В листингах \ref{lst:lev_recursion} - \ref{lst:dam_lev_dyn} представлены реализации алгоритмов нахождения расстояния Левенштейна и Дамерау–Левенштейна.
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:lev_recursion,caption=Функция нахождения расстояния Левенштейна рекурсивно]
+def levenstein_recursive(str1, str2, output = True):
+    n = len(str1)
+    m = len(str2)
+
+    if ((n == 0) or (m == 0)):
+        return abs(n - m)
+
+    if (str1[0] == str2[0]):
+        return levenstein_recursive(str1[1:], str2[1:])
+
+    min_distance = 1 + min(levenstein_recursive(str1[1:], str2),
+                    levenstein_recursive(str1, str2[1:]),
+                    levenstein_recursive(str1[1:], str2[1:]))
+
+    return min_distance
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:lev_table,caption=Функция нахождения расстояния Левенштейна динамически]
+def levenstein_dynamic(str1, str2, output = True):
+    n = len(str1)
+    m = len(str2)
+
+    matrix = create_lev_matrix(n + 1, m + 1)
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            add = matrix[i - 1][j] + 1
+            delete = matrix[i][j - 1] + 1
+            change = matrix[i - 1][j - 1]
+            
+            if (str1[i - 1] != str2[j - 1]):
+                change += 1
+
+            matrix[i][j] = min(add, delete, change)
+
+    if (output):
+        print_lev_matrix(matrix, str1, str2)
+
+    return matrix[n][m]
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:dam_lev_dyn,caption=Функция нахождения расстояния Дамерау–Левенштейна динамически]
+def damerau_levenstein_dynamic(str1, str2, output=True):
+    n = len(str1)
+    m = len(str2)
+
+    matrix = create_lev_matrix(n + 1, m + 1)
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            add = matrix[i - 1][j] + 1    
+            delete = matrix[i][j - 1] + 1 
+            change = matrix[i - 1][j - 1]
+
+            if str1[i - 1] != str2[j - 1]:
+                change += 1
+
+            matrix[i][j] = min(add, delete, change)
+
+            if i > 1 and j > 1 and str1[i - 1] == str2[j - 2] and str1[i - 2] == str2[j - 1]:
+                transposition = matrix[i - 2][j - 2] + 1
+                matrix[i][j] = min(matrix[i][j], transposition)
+
+    if output:
+        print_lev_matrix(matrix, str1, str2)
+
+    return matrix[n][m]
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\textbf{ВЫВОД}
+
+В данном разделе были рассмотрены требования к программному обеспечению, используемые средства реализации, а также приведены листинги кода для вычисления расстояний Левенштейна (на основе рекурсивного и динамического алгоритмов) и Дамерау-Левенштейна (на основе динамического алгоритма).
+
+\clearpage

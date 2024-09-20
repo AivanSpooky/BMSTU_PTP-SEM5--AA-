@@ -1,0 +1,14 @@
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\bin\Debug\net8.0\CodeCheck.exe
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\bin\Debug\net8.0\CodeCheck.deps.json
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\bin\Debug\net8.0\CodeCheck.runtimeconfig.json
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\bin\Debug\net8.0\CodeCheck.dll
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\bin\Debug\net8.0\CodeCheck.pdb
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.AssemblyInfo.cs
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.dll
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\refint\CodeCheck.dll
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.pdb
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\CodeCheck.genruntimeconfig.cache
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\rk_02\CodeCheck\CodeCheck\obj\Debug\net8.0\ref\CodeCheck.dll
