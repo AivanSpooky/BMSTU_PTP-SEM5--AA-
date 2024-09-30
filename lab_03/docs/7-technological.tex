@@ -1,0 +1,74 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут приведены требования к программному обеспечению, средства реализации, листинги кода.
+
+\section{Требования к программному обеспечению}
+
+Входные данные: массив и искомое значение;
+
+Выходные данные: индекс найденного значения и количество сравнений.
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $C\#$ с использованием платформы $.NET\ 8$ [1]. Выбор обусловлен наличием:
+\begin{itemize}
+    \item возможности создавать массивы определенного размера: $int[N]$;
+    \item встроенной поддержки $Windows Forms$, что позволяет создавать пользовательские интерфейсы и визуализировать данные. В частности, для построения гистограмм были использованы средства, представленные в пространстве имен $System.Windows.Forms.DataVisualization.Charting$ [2].
+\end{itemize}
+
+\section{Реализация алгоритмов}
+
+В листингах \ref{lst:fullsearch} - \ref{lst:binsearch} представлены реализации алгоритмов.
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:fullsearch,caption=Алгоритм использующий полный перебор]
+private int FullSearch(int[] array, int target, out int comparisons)
+{
+    comparisons = 0;
+    for (int i = 0; i < N; i++)
+    {
+        comparisons++;
+        if (array[i] == target)
+            return i;
+    }
+    return -1;
+}
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:binsearch,caption=Алгоритм использующий полный перебор]
+private int BinarySearch(int[] array, int target, out int comparisons)
+{
+    comparisons = 0;
+    int left = 0, right = N - 1;
+
+    while (left <= right)
+    {
+        comparisons++;
+        int mid = (left + right) / 2;
+        if (array[mid] == target)
+            return mid;
+        if (array[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\vspace{5mm}
+
+\textbf{ВЫВОД}
+
+В данном разделе были реализованы алгоритмы поиска заданного значения в массиве полным перебором и с помощью двоичного поиска, рассмотрены средства реализации, предусмотрены требования к программному обеспечению.
+
+\clearpage
