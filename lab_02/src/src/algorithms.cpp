@@ -36,23 +36,17 @@ Matrix Winograd(const Matrix& A, const Matrix& B)
             colFactors[i] += B[2 * j][i] * B[2 * j + 1][i];
 
     for (size_t i = 0; i < rowsA; ++i)
-    {
         for (size_t j = 0; j < colsB; ++j)
         {
             result[i][j] = -rowFactors[i] - colFactors[j];
-            for (size_t k = 0; k < colsA - 1; k += 2)
-            {
-                result[i][j] += (A[i][k] + B[k + 1][j]) * (A[i][k + 1] + B[k][j]);
-            }
+            for (size_t k = 0; k < colsA / 2; ++k)
+                result[i][j] += (A[i][2 * k] + B[2 * k + 1][j]) * (A[i][2 * k + 1] + B[2 * k][j]);
         }
-    }
 
     if (colsA % 2)
-    {
         for (size_t i = 0; i < rowsA; ++i)
             for (size_t j = 0; j < colsB; ++j)
                 result[i][j] += A[i][colsA - 1] * B[colsA - 1][j];
-    }
 
     return result;
 }

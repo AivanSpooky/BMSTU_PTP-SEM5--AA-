@@ -92,7 +92,7 @@ int main()
             MultiplyUsingWinogradMethod(Matrix::loadFromFile(matrixFilePath1), Matrix::loadFromFile(matrixFilePath2), WinogradOpt);
         }},
         {4, [&]() {
-            MeasureAndOutput(1, 100, 100);
+            MeasureAndOutput(1, 100, 100);  
         }}
     };
 
