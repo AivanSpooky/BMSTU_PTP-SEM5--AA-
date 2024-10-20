@@ -1,0 +1,15 @@
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\bin\Debug\net8.0\timestamp_cas.exe
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\bin\Debug\net8.0\timestamp_cas.deps.json
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\bin\Debug\net8.0\timestamp_cas.runtimeconfig.json
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\bin\Debug\net8.0\timestamp_cas.dll
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\bin\Debug\net8.0\timestamp_cas.pdb
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.AssemblyInfo.cs
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.sourcelink.json
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.dll
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\refint\timestamp_cas.dll
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.pdb
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\timestamp_cas.genruntimeconfig.cache
+C:\Users\User\Desktop\учеба\бауманка\5-sem\AA\timestamp_cas\timestamp_cas\timestamp_cas\obj\Debug\net8.0\ref\timestamp_cas.dll
