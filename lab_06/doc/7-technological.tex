@@ -1,0 +1,220 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут приведены требования к программному обеспечению, средства реализации, листинги кода.
+
+\section{Требования к программному обеспечению}
+
+Входные данные: квадратная матрица стоимостей и дополнительные параметры к муравьиному алгоритму;
+
+Выходные данные: минимальная стоимость маршрута и сам маршрут (массив посещенных городов).
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $C\#$ [3]. Выбор обсуловлен наличием $LINQ$---выражений [4], упрощающих работу с коллекциями и данными, а именно для нахождения всех возможных замкнутых маршрутов и для выбора элитных муравьев из всех муравьев. Время было замерено с помощью методов класса \textit{Stopwatch} [5].
+
+\section{Реализация алгоритмов}
+
+В листингах~\ref{lst:lev_recursion} ---~\ref{lst:lev_table} представлены реализации алгоритмов полного перебора и муравьиного.
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:lev_recursion,caption=Алгоритм полного перебора,numbers=none]
+static void RunBruteForce()
+{
+    Console.WriteLine("\nBruteForce algo...");
+    List<int> bestRoute = null;
+    int minCost = int.MaxValue;
+    foreach (var permutation in GetPermutations(Enumerable.Range(0, n), n))
+    {
+        int cost = 0;
+        bool validRoute = true;
+
+        for (int i = 0; i < permutation.Count() - 1; i++)
+        {
+            int from = permutation.ElementAt(i);
+            int to = permutation.ElementAt(i + 1);
+
+            if (graph[from, to] == 0)
+            {
+                validRoute = false;
+                break;
+            }
+            cost += graph[from, to];
+        }
+        if (validRoute && cost < minCost)
+        {
+            minCost = cost;
+            bestRoute = permutation.ToList();
+        }
+    }
+    if (bestRoute != null)
+    {
+        Console.WriteLine("Min cost: " + minCost);
+        Console.WriteLine("Best route: " +
+            string.Join(" -> ", bestRoute.Select(i => cities[i])));
+    }
+    else
+        Console.WriteLine("No route found.");
+}
+\end{lstlisting}
+\end{center}
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin
+{lstlisting}[label=lst:lev_table,caption=Муравьиный алгоритм,numbers=none]
+public List<int> Run()
+{
+    for (int t = 0; t < tMax; t++)
+    {
+        List<List<int>> tours = new List<List<int>>();
+        List<double> lengths = new List<double>();
+
+        for (int k = 0; k < numAnts; k++)
+        {
+            List<int> tour = ConstructSolution();
+            double length = CalculateTourLength(tour);
+            tours.Add(tour);
+            lengths.Add(length);
+
+            if (length < BestLength)
+            {
+                BestLength = length;
+                BestTour = new List<int>(tour);
+            }
+        }
+
+        UpdatePheromones(tours, lengths);
+
+        seasonCounter++;
+        if (seasonCounter % 60 == 0)
+        {
+            UpdateSeason();
+            isSummer = !isSummer;
+        }
+    }
+    return BestTour;
+}
+
+List<int> ConstructSolution()
+{
+    List<int> tour = new List<int>();
+    bool[] visited = new bool[n];
+    int currentCity = rand.Next(n);
+    tour.Add(currentCity);
+    visited[currentCity] = true;
+    while (tour.Count < n)
+    {
+        int nextCity = SelectNextCity(currentCity, visited);
+        if (nextCity == -1)
+            break;
+        tour.Add(nextCity);
+        visited[nextCity] = true;
+        currentCity = nextCity;
+    }
+    return tour;
+}
+
+int SelectNextCity(int currentCity, bool[] visited)
+{
+    double[] probabilities = new double[n];
+    double sum = 0.0;
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i] && graph[currentCity, i] > 0)
+        {
+            probabilities[i] = Math.Pow(pheromone[currentCity, i], alpha) *
+                               Math.Pow(1.0 / graph[currentCity, i], beta);
+            sum += probabilities[i];
+        }
+        else
+            probabilities[i] = 0.0;
+    }
+    if (sum == 0.0)
+        return -1;
+    double r = rand.NextDouble() * sum;
+    double total = 0.0;
+    for (int i = 0; i < n; i++)
+    {
+        total += probabilities[i];
+        if (total >= r)
+            return i;
+    }
+
+    return -1;
+}
+
+void UpdatePheromones(List<List<int>> tours, List<double> lengths)
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            pheromone[i, j] *= (1.0 - rho);
+
+    for (int k = 0; k < tours.Count; k++)
+    {
+        double delta = 1.0 / lengths[k];
+        List<int> tour = tours[k];
+
+        for (int i = 0; i < tour.Count - 1; i++)
+        {
+            int from = tour[i];
+            int to = tour[i + 1];
+            pheromone[from, to] += delta;
+        }
+    }
+
+    var eliteAnts = lengths.Select((length, index) => new { length, index })
+                            .OrderBy(l => l.length)
+                            .Take(numEliteAnts)
+                            .Select(l => tours[l.index]);
+    foreach (var tour in eliteAnts)
+    {
+        double delta = 1.0 / CalculateTourLength(tour);
+        for (int i = 0; i < tour.Count - 1; i++)
+        {
+            int from = tour[i];
+            int to = tour[i + 1];
+            pheromone[from, to] += delta;
+        }
+    }
+}
+
+double CalculateTourLength(List<int> tour)
+{
+    double length = 0.0;
+    for (int i = 0; i < tour.Count - 1; i++)
+        length += graph[tour[i], tour[i + 1]];
+    return length;
+}
+
+void UpdateSeason()
+{
+    if (isSummer)
+    {
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                graph[i, j] = originalGraph[i, j];
+    }
+    else
+    {
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (i != j)
+                    if ((i + j) % 2 == 0)
+                        graph[i, j] = originalGraph[i, j] / 2;
+                    else
+                        graph[i, j] = originalGraph[i, j] * 4;
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\vspace{5mm}
+
+\textbf{ВЫВОД}
+
+В данном разделе были рассмотрены требования к программному обеспечению, используемые средства реализации, а также приведены листинги кода двух алгоритмов решения задачи коммивояжера.
+
+\clearpage
