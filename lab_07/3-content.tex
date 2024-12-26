@@ -1,0 +1,11 @@
+\makeatletter
+\renewcommand{\@makeschapterhead}[1]{%
+  {\parindent \z@ \centering \normalfont
+    \interlinepenalty\@M
+    \LARGE \bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+\renewcommand{\contentsname}{СОДЕРЖАНИЕ}
+\tableofcontents
+\setcounter{page}{2}
