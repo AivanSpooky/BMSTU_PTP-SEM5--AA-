@@ -37,7 +37,7 @@
 |4       |Потоки, но не по Кернигану                           |`5/10`|[4](https://github.com/AivanSpooky/BMSTU_PTP-SEM5-/tree/main/lab_04)|
 |5     |Конвейерная обработка ВАХов |`7/10`|[5](https://github.com/AivanSpooky/BMSTU_PTP-SEM5-/tree/main/lab_05)|
 |6     |Пишем НИР на АА с элитными варварами    |`8/10`|[6](https://github.com/AivanSpooky/BMSTU_PTP-SEM5-/tree/main/lab_06)|
-|7    |Читаем и пишем НА ЗДРАВОЙ ОС              |`8/10`|[7]()|
+|7    |Составляем 4 графа под Lost              |`2/10`|[7]()|
 |8    |Она есть, но по факту нет|`0/10`|[нет]()|
 
 ---
